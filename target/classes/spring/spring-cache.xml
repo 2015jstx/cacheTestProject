@@ -1,61 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
- <beans xmlns="http://www.springframework.org/schema/beans" 
- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-   xmlns:cache="http://www.springframework.org/schema/cache"
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cache="http://www.springframework.org/schema/cache"
 	xmlns:p="http://www.springframework.org/schema/p"
-   xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
    http://www.springframework.org/schema/beans/spring-beans.xsd 
      http://www.springframework.org/schema/cache 
-     http://www.springframework.org/schema/cache/spring-cache.xsd"> 
-    
-    
-    <!-- 支持缓存注解 -->  
-    <cache:annotation-driven  cache-manager="cacheManager"/>
+     http://www.springframework.org/schema/cache/spring-cache.xsd">
 
-	<!-- 使用spring 自带的缓存，功能很弱 -->
-<!-- 	<bean id="cacheManager"  -->
-<!-- 	   class="org.springframework.cache.support.SimpleCacheManager"> -->
-<!-- 	     <property name="caches">  -->
-<!-- 	       <set>  -->
-<!-- 	         <bean  -->
-<!-- 	           class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" -->
-<!-- 	           p:name="default" />  -->
-	        
-<!-- 	         <bean  -->
-<!-- 	           class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean" -->
-<!-- 	           p:name="helloCache" />  -->
-<!-- 	       </set>  -->
-<!-- 	     </property>  -->
-<!--      </bean> -->
-     
-     
-     <!-- 用ehcache 实现缓存 -->
-      <!--  缓存  属性-->  
-<!--     <bean id="cacheManagerFactory" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">     -->
-<!--         <property name="configLocation"  value="classpath:ehcache.xml"/>    -->
-<!--     </bean>    -->
-      
-    <!-- 默认是cacheManager -->  
-<!--     <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">     -->
-<!--         <property name="cacheManager"  ref="cacheManagerFactory"/>     -->
-<!--     </bean>     -->
+
+	<!-- 支持缓存注解 -->
+	<cache:annotation-driven cache-manager="cacheManager" />
 
 	<!-- spring cache + redis -->
-	<bean id="cacheManager" 
-	   class="com.util.springredis.RedisCacheManager">
-	     <property name="caches"> 
-	       <set> 
-	         <bean 
-	           class="com.util.springredis.RedisCacheFactoryBean"
-	           p:name="default" /> 
-	        
-	         <bean 
-	           class="com.util.springredis.RedisCacheFactoryBean"
-	           p:name="helloCache" /> 
-	       </set> 
-	     </property> 
-	     
-	     <property name="connectionFactory" ref="jedisConnectionFactory"></property>
-     </bean>
-     
+	<bean id="cacheManager" class="com.util.springredis.RedisCacheManager">
+		<property name="caches">
+			<set>
+				<bean class="com.util.springredis.RedisCacheFactoryBean"
+					p:name="default" />
+
+				<bean class="com.util.springredis.RedisCacheFactoryBean"
+					p:name="helloCache" />
+			</set>
+		</property>
+
+		<property name="connectionFactory" ref="jedisConnectionFactory"></property>
+	</bean>
 </beans>	

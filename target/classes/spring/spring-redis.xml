@@ -34,9 +34,9 @@
 <!-- 		</property> -->
 <!-- 	</bean> -->
 
-	<bean id="redisManager" class="com.util.RedisManager">
-		<property name="redisTemplate" ref="redisTemplate"></property>
-	</bean>
+<!-- 	<bean id="redisManager" class="com.util.RedisManager"> -->
+<!-- 		<property name="redisTemplate" ref="redisTemplate"></property> -->
+<!-- 	</bean> -->
 
 	<bean id="serializer"
 		class="org.springframework.data.redis.serializer.JacksonJsonRedisSerializer" />
