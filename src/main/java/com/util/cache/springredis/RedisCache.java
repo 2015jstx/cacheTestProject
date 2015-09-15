@@ -49,19 +49,13 @@ public class RedisCache implements Cache {
 
 	@Override
 	public void evict(Object arg0) {
-		System.out.println("evict - " + arg0.toString());
-		// TODO Auto-generated method stub
 		Item key = new Item(arg0);
 		byte[] k = serializeObject(key);
-
 		cache.hdel(name.getBytes(), k);
 	}
 
 	@Override
 	public ValueWrapper get(Object arg0) {
-		System.out.println("get - " + arg0.toString());
-
-		// TODO Auto-generated method stub
 		if (arg0 == null) {
 			return null;
 		}
@@ -93,9 +87,6 @@ public class RedisCache implements Cache {
 
 	@Override
 	public void put(Object arg0, Object arg1) {
-		System.out.println("put - " + arg0.toString() + ":"
-				+ (arg1 == null ? null : arg1.getClass().getName()));
-		// TODO Auto-generated method stub
 		Item key = new Item(arg0);
 		Item val = new Item(arg1);
 		byte[] k = serializeObject(key);
