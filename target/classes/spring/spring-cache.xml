@@ -12,13 +12,13 @@
 	<cache:annotation-driven cache-manager="cacheManager" />
 
 	<!-- spring cache + redis -->
-	<bean id="cacheManager" class="com.util.springredis.RedisCacheManager">
+	<bean id="cacheManager" class="com.util.cache.springredis.RedisCacheManager">
 		<property name="caches">
 			<set>
-				<bean class="com.util.springredis.RedisCacheFactoryBean"
+				<bean class="com.util.cache.springredis.RedisCacheFactoryBean"
 					p:name="default" />
 
-				<bean class="com.util.springredis.RedisCacheFactoryBean"
+				<bean class="com.util.cache.springredis.RedisCacheFactoryBean"
 					p:name="helloCache" />
 			</set>
 		</property>
