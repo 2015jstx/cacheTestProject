@@ -13,12 +13,15 @@
     http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
     
 	<context:property-placeholder location="classpath:jdbc.properties" />
-	<context:component-scan base-package="com.hiveview"/>
+	<context:component-scan base-package="com.jeff"/>
 	
 	<context:component-scan base-package="com.util">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Component"/>
 	</context:component-scan>
 
+<bean class="org.springframework.validation.beanvalidation.MethodValidationPostProcessor">
+		<property name="order" value="1"></property>
+	</bean>  
 	<!--开启切面代理 使得spring认识 @Aspect -->
 	<aop:aspectj-autoproxy/>
 </beans>
